@@ -1,26 +1,21 @@
-name: CI-BlackDuck-Basic
+name: Synopsys Security Testing
+
 on:
   push:
-    branches: [ main, master, develop, stage, release ]
+    branches: [ "master" ]
   pull_request:
-    branches: [ main, master, develop, stage, release ]
-  workflow_dispatch:
-    
+    branches: [ "master" ]
+
 jobs:
   build:
-    runs-on: [ ubuntu-latest ]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
-      - name: Checkout Source
+      - name: checkout
         uses: actions/checkout@v4
-      - name: Black Duck Scan
-        uses: synopsys-sig/synopsys-action@v1.9.0
-        
-        ### Configure DETECT environment variables
-        env:
-          DETECT_PROJECT_NAME: ${{ github.event.repository.name }}
-          DETECT_TOOLS_EXCLUDED: 'SIGNATURE_SCAN'
-          DETECT_CLEANUP: false
+      - name: Synopsys Action
+        uses: synopsys-sig/synopsys-action@v1.6.0
         with:
-          ### SCANNING: Required fields
-          blackduck_url: ${{ vars.BLACKDUCK_URL }}
-          blackduck_token: ${{ secrets.BLACKDUCK_TOKEN }}
+          blackduck_token: ${{ secrets.BLACKDUCK_API_TOKEN }}
+          blackduck_url: ${{ secrets.BLACKDUCK_URL }}
