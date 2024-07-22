@@ -17,5 +17,5 @@ jobs:
       - name: Synopsys Action
         uses: synopsys-sig/synopsys-action@v1.9.0
         with:
-          blackduck_token: MTg3OTg5NmEtZGIyOS00NmJhLWJkYmUtZWZiNmQwZTI5NzRkOjhhMTI3MDNlLWI2YWMtNGU3MC1iZjU5LTg4OTUyNmUyYmEwZQ==
+          blackduck_token: MTg3OTg5NmEtZGIyOS00NmJhLWJkYmUtZWZiNmQwZTI5NzRkOjNiODFlZjg0LTJjMjEtNDFkZi05ZTRhLTIzZjQzN2I3NTUxNg==
           blackduck_url: https://us03-sup-bruckler01.nprd.sig.synopsys.com
