@@ -32,6 +32,7 @@ jobs:
           #------------------------------------------BLACKDUCK----------------------------------------
           blackduck_token: ${{ secrets.BLACKDUCK_API_TOKEN }}
           blackduck_url: ${{ secrets.BLACKDUCK_URL }}
+          include_diagnostics: true
 
           
           #------------------------------------------POLARIS------------------------------------------
