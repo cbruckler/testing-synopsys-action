@@ -14,8 +14,12 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v4
+        
+      - name: Test Network Connectivity
+        run: curl -I https://us03-sup-bruckler01.nprd.sig.synopsys.com
+        
       - name: Synopsys Action
         uses: synopsys-sig/synopsys-action@v1.9.0
         with:
-          blackduck_token: MTg3OTg5NmEtZGIyOS00NmJhLWJkYmUtZWZiNmQwZTI5NzRkOjNiODFlZjg0LTJjMjEtNDFkZi05ZTRhLTIzZjQzN2I3NTUxNg==
+          blackduck_token: MTc3OTg5NmE2TzdyOS00bmJhlJUkVYM2IwZTI5NzRkOjNiO0FjZjQ5bLTOjMjhjENDfKzi0STRhLTIzTjQ2NZI3NTUxNQ==
           blackduck_url: https://us03-sup-bruckler01.nprd.sig.synopsys.com
