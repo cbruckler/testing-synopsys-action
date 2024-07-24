@@ -14,12 +14,24 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v4
-        
-      - name: Test Network Connectivity
-        run: curl -I https://us03-sup-bruckler01.nprd.sig.synopsys.com
+
+      - name: Install Curl and CA Certificates
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y curl ca-certificates
+
+      - name: Download CA Bundle
+        run: |
+          curl -o /etc/ssl/certs/ca-certificates.crt https://curl.se/ca/cacert.pem
+
+      - name: Test Network Connectivity with CA Bundle
+        run: curl --cacert /etc/ssl/certs/ca-certificates.crt -I https://us03-sup-bruckler01.nprd.sig.synopsys.com
+
+      - name: Test Network Connectivity with Insecure SSL
+        run: curl -k -I https://us03-sup-bruckler01.nprd.sig.synopsys.com
         
       - name: Synopsys Action
         uses: synopsys-sig/synopsys-action@v1.9.0
         with:
-          blackduck_token: MTc3OTg5NmE2TzdyOS00bmJhlJUkVYM2IwZTI5NzRkOjNiO0FjZjQ5bLTOjMjhjENDfKzi0STRhLTIzTjQ2NZI3NTUxNQ==
+          blackduck_token: ${{ secrets.BLACKDUCK_API_TOKEN }}
           blackduck_url: https://us03-sup-bruckler01.nprd.sig.synopsys.com
