@@ -12,9 +12,9 @@ jobs:
     permissions:
       contents: read
     steps:
-      - name: checkout
+      - name: Checkout
         uses: actions/checkout@v4
-
+        
       - name: Install Curl and CA Certificates
         run: |
           sudo apt-get update
@@ -22,10 +22,10 @@ jobs:
 
       - name: Download CA Bundle
         run: |
-          curl -o /etc/ssl/certs/ca-certificates.crt https://curl.se/ca/cacert.pem
+          curl -o $GITHUB_WORKSPACE/ca-certificates.crt https://curl.se/ca/cacert.pem
 
       - name: Test Network Connectivity with CA Bundle
-        run: curl --cacert /etc/ssl/certs/ca-certificates.crt -I https://us03-sup-bruckler01.nprd.sig.synopsys.com
+        run: curl --cacert $GITHUB_WORKSPACE/ca-certificates.crt -I https://us03-sup-bruckler01.nprd.sig.synopsys.com
 
       - name: Test Network Connectivity with Insecure SSL
         run: curl -k -I https://us03-sup-bruckler01.nprd.sig.synopsys.com
